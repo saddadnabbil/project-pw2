@@ -42,8 +42,8 @@ Before starting, ensure you have the following tools installed:
 Clone the project repository to your local machine:
 
 ```bash
-git clone https://github.com/your-username/laravel-api-crud.git
-cd laravel-api-crud 
+git clone https://github.com/saddadnabbil/project-pw2
+cd project-pw2
 ```
 
 ### 2. Install Dependencies
