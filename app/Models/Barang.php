@@ -14,11 +14,18 @@ class Barang extends Model
         'kode',
         'stok',
         'harga',
+        'supplier_id',
     ];
 
     // Relasi ke Pemesanan
     public function pemesanans()
     {
         return $this->hasMany(Pemesanan::class);
+    }
+
+    // Relasi ke Supplier
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class);
     }
 }

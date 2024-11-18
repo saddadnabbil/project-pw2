@@ -18,6 +18,7 @@ class BarangController extends BaseController
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'supplier_id' => 'required|exists:suppliers,id',
             'nama' => 'required',
             'kode' => 'required|unique:barangs',
             'stok' => 'required|integer',

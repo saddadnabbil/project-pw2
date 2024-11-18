@@ -14,6 +14,7 @@ class BarangSeeder extends Seeder
             'kode' => 'PRC001',
             'stok' => 100,
             'harga' => 5000.00,
+            'supplier_id' => 1
         ]);
 
         Barang::create([
@@ -21,6 +22,7 @@ class BarangSeeder extends Seeder
             'kode' => 'IBP001',
             'stok' => 200,
             'harga' => 10000.00,
+            'supplier_id' => 1
         ]);
     }
 }

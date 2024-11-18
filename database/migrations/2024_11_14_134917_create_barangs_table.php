@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('barangs', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('supplier_id');
             $table->string('nama');
             $table->string('kode');
             $table->integer('stok');
             $table->decimal('harga', 10, 2);
             $table->timestamps();
+
+            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
         });
     }
 
