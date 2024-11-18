@@ -52,7 +52,19 @@ class BarangController extends BaseController
             return $this->sendError('Barang not found', 404);
         }
 
-        $barang->update($request->all());
+        $validator = Validator::make($request->all(), [
+            'supplier_id' => 'sometimes|exists:suppliers,id',
+            'nama' => 'sometimes',
+            'kode' => 'sometimes|unique:barangs',
+            'stok' => 'sometimes|integer',
+            'harga' => 'sometimes|numeric',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendValidationError($validator);
+        }
+
+        $barang->update($validator->validated());
         return $this->sendResponse($barang, 'Barang updated successfully');
     }
 

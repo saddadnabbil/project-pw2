@@ -51,7 +51,18 @@ class CustomerController extends BaseController
             return $this->sendError('Customer not found', 404);
         }
 
-        $customer->update($request->all());
+        $validator = Validator::make($request->all(), [
+            'nama' => 'sometimes',
+            'email' => 'sometimes|email|unique:customers',
+            'alamat' => 'sometimes',
+            'telepon' => 'sometimes',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendValidationError($validator);
+        }
+
+        $customer->update($validator->validated());
         return $this->sendResponse($customer, 'Customer updated successfully');
     }
 

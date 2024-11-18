@@ -46,11 +46,17 @@ class SupplierController extends BaseController
     {
         $supplier = Supplier::find($id);
 
-        if (is_null($supplier)) {
-            return $this->sendError('Supplier not found', 404);
+        $validator = Validator::make($request->all(), [
+            'nama' => 'sometimes',
+            'alamat' => 'sometimes',
+            'telepon' => 'sometimes',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendValidationError($validator);
         }
 
-        $supplier->update($request->all());
+        $supplier->update($validator->validated());
         return $this->sendResponse($supplier, 'Supplier updated successfully');
     }
 
