@@ -17,13 +17,15 @@ return new class extends Migration
     {
         Schema::create('pemesanans', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('customer_id');
-            $table->unsignedBigInteger('barang_id');
+            $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
+            $table->foreignId('barang_id')->constrained('barangs')->onDelete('cascade');
             $table->integer('jumlah');
-            $table->date('tanggal_pemesanan');
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
-            $table->foreign('barang_id')->references('id')->on('barangs')->onDelete('cascade');
+            $table->decimal('harga_satuan', 10, 2);
+            $table->decimal('total_harga', 10, 2);
+            $table->enum('status', ['pending', 'confirmed', 'shipped', 'delivered'])->default('pending');
+            $table->dateTime('tanggal_pesan');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('stok');
             $table->decimal('harga', 10, 2);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
         });
