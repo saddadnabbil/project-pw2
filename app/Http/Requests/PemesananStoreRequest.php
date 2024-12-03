@@ -13,7 +13,7 @@ class PemesananStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return true; // Adjust if you need authorization logic
+        return true; 
     }
 
     /**
@@ -29,6 +29,7 @@ class PemesananStoreRequest extends FormRequest
             'jumlah' => 'required|integer|min:1',
             'harga_satuan' => 'required|numeric|min:0',
             'status' => 'required|in:pending,confirmed,shipped,delivered',
+            'tanggal_pesan' => 'required|date',
         ];
     }
 
@@ -52,6 +53,7 @@ class PemesananStoreRequest extends FormRequest
             'harga_satuan.min' => 'Harga Satuan cannot be negative.',
             'status.required' => 'Status is required.',
             'status.in' => 'The status must be one of the following: pending, confirmed, shipped, or delivered.',
+            'tanggal_pesan.required' => 'Tanggal Pesan is required.',
         ];
     }
 }

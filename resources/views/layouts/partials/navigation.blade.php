@@ -14,44 +14,49 @@
         <li class="sidebar-title">Menu</li>
         <li class="sidebar-item {{ request()->is('dashboard*') ? 'active' : '' }}">
             <a href="{{ route('dashboard') }}" class='sidebar-link'>
-                <i class="bi bi-grid-fill"></i>
+                <i class="bi bi-house-door-fill"></i>
                 <span>Dashboard</span>
             </a>
         </li>
 
-        <li class="sidebar-title">Master Data</li>
+        <li class="sidebar-title mt-4">Master Data</li>
         <li class="sidebar-item {{ request()->is('suppliers*') ? 'active' : '' }}">
             <a href="{{ route('suppliers.index') }}" class='sidebar-link'>
-                <i class="bi bi-grid-fill"></i>
+                <i class="bi bi-person-check-fill"></i>
                 <span>Suppliers</span>
             </a>
         </li>
 
         <li class="sidebar-item {{ request()->is('products*') ? 'active' : '' }}">
             <a href="{{ route('products.index') }}" class='sidebar-link'>
-                <i class="bi bi-grid-fill"></i>
+                <i class="bi bi-box"></i>
                 <span>Produk</span>
             </a>
         </li>
 
         <li class="sidebar-item {{ request()->is('customers*') ? 'active' : '' }}">
             <a href="{{ route('customers.index') }}" class='sidebar-link'>
-                <i class="bi bi-grid-fill"></i>
+                <i class="bi bi-person-lines-fill"></i>
                 <span>Customer</span>
             </a>
         </li>
 
-        <li class="sidebar-title">Transaksi</li>
+        <li class="sidebar-title mt-4">Transaksi</li>
         <li class="sidebar-item {{ request()->is('pemesanans*') ? 'active' : '' }}">
             <a href="{{ route('pemesanans.index') }}" class='sidebar-link'>
-                <i class="bi bi-grid-fill"></i>
+                <i class="bi bi-cart-check-fill"></i>
                 <span>Pemesanan</span>
             </a>
         </li>
-
+        <li class="sidebar-item {{ request()->is('penjualans*') ? 'active' : '' }}">
+            <a href="{{ route('penjualans.index') }}" class='sidebar-link'>
+                <i class="bi bi-cash-stack"></i>
+                <span>Penjualan</span>
+            </a>
+        </li>
 
         @auth
-            <li class="sidebar-title">User Management</li>
+            <li class="sidebar-title mt-4">User Management</li>
             <li class="sidebar-item {{ request()->routeIs('administrators.*') ? 'active' : '' }}">
                 <a href="{{ route('administrators.index') }}" class='sidebar-link'>
                     <i class="bi bi-person-badge-fill"></i>
@@ -64,7 +69,7 @@
                     @csrf
 
                     <a href="{{ route('logout') }}" class='sidebar-link'>
-                        <i class="bi bi-box-arrow-left"></i>
+                        <i class="bi bi-box-arrow-right"></i>
                         <span>Logout</span>
                     </a>
                 </form>

@@ -1,4 +1,4 @@
-@extends('layouts.main', ['title' => 'Product', 'page_heading' => 'Data Product'])
+@extends('layouts.main', ['title' => 'Pemesanan', 'page_heading' => 'Data Pemesanan'])
 
 @section('content')
     <section class="row">
@@ -7,7 +7,7 @@
                 <div class="d-flex justify-content-end pb-3">
                     <div class="btn-group d-gap gap-2">
                         <a href="{{ route('pemesanans.index.history') }}" class="btn btn-secondary">
-                            <span class="badge">{{ $pemesananTrashedCount }}</span> Histori Data Product
+                            <span class="badge">{{ $pemesananTrashedCount }}</span> Histori Data Pemesanan
                         </a>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPemesananModal">
                             <i class="bi bi-plus-circle"></i> Tambah Data

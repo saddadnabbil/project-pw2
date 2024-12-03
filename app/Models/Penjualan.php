@@ -30,4 +30,9 @@ class Penjualan extends Model
     {
         return $this->belongsTo(Customer::class, 'customer_id');
     }
+
+    public function getTotalHargaAttribute($value)
+    {
+        return 'Rp ' . number_format($value, 0, ',', '.');
+    }
 }

@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Detail Product</h5>
+                <h5 class="modal-title">Detail Pemesanan</h5>
                 <button type="button" class="btn-close  " data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -11,17 +11,17 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="mb-3">
-                            <label for="nama" class="form-label">Nama Product</label>
+                            <label for="nama" class="form-label">Nama Pemesanan</label>
                             <input type="text" class="form-control" name="nama" id="nama"
-                                placeholder="Masukkan nama Product.." disabled>
+                                placeholder="Masukkan nama Pemesanan.." disabled>
                         </div>
                     </div>
 
                     <div class="col-md-12">
                         <div class="mb-3">
-                            <label for="kode" class="form-label">Kode Product</label>
+                            <label for="kode" class="form-label">Kode Pemesanan</label>
                             <input type="text" class="form-control" name="kode" id="kode"
-                                placeholder="Masukkan kode Product.." disabled>
+                                placeholder="Masukkan kode Pemesanan.." disabled>
                         </div>
                     </div>
 
@@ -29,7 +29,7 @@
                         <div class="mb-3">
                             <label for="stok" class="form-label">Stok</label>
                             <input type="number" class="form-control" name="stok" id="stok"
-                                placeholder="Masukkan stok Product.." disabled>
+                                placeholder="Masukkan stok Pemesanan.." disabled>
                         </div>
                     </div>
 
@@ -37,7 +37,7 @@
                         <div class="mb-3">
                             <label for="harga" class="form-label">Harga</label>
                             <input type="number" class="form-control" name="harga" id="harga"
-                                placeholder="Masukkan harga Product.." disabled>
+                                placeholder="Masukkan harga Pemesanan.." disabled>
                         </div>
                     </div>
 
@@ -54,10 +54,11 @@
                             </select>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary  " data-bs-dismiss="modal">Tutup</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary  " data-bs-dismiss="modal">Tutup</button>
                 </div>
             </div>
         </div>
     </div>
+</div>

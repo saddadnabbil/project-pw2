@@ -30,10 +30,10 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="barang_id" class="form-label">Nama Product</label>
+                                <label for="barang_id" class="form-label">Nama Pemesanan</label>
                                 <select class="form-control @error('barang_id') is-invalid @enderror" name="barang_id"
                                     id="barang_id" required>
-                                    <option value="">Pilih Product</option>
+                                    <option value="">Pilih Pemesanan</option>
                                     @foreach ($barangs as $barang)
                                         <option value="{{ $barang->id }}"
                                             {{ old('barang_id') == $barang->id ? 'selected' : '' }}>
@@ -84,6 +84,39 @@
                                 @enderror
                             </div>
 
+                            <!-- Status -->
+                            <div class="mb-3">
+                                <label for="status" class="form-label">Status Pemesanan</label>
+                                <select class="form-control @error('status') is-invalid @enderror" name="status"
+                                    id="status" required readonly>
+                                    <option value="pending" {{ old('status') == 'pending' ? 'selected' : '' }}>Pending
+                                    </option>
+                                    <option value="confirmed" {{ old('status') == 'confirmed' ? 'selected' : '' }}>
+                                        Confirmed</option>
+                                    <option value="shipped" {{ old('status') == 'shipped' ? 'selected' : '' }}>Shipped
+                                    </option>
+                                    <option value="delivered" {{ old('status') == 'delivered' ? 'selected' : '' }}>
+                                        Delivered</option>
+                                </select>
+                                @error('status')
+                                    <div class="invalid-feedback d-block">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
+                            {{-- tanggal pemesanan --}}
+                            <div class="mb-3">
+                                <label for="tanggal_pesan" class="form-label">Tanggal Pemesanan</label>
+                                <input type="date" class="form-control @error('tanggal_pesan') is-invalid @enderror"
+                                    name="tanggal_pesan" id="tanggal_pesan" value="{{ old('tanggal_pesan') }}"
+                                    required>
+                                @error('tanggal_pesan')
+                                    <div class="invalid-feedback d-block">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -95,4 +128,3 @@
         </div>
     </div>
 </div>
-    

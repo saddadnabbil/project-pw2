@@ -3,14 +3,15 @@
 // app/Http/Controllers/PemesananController.php
 namespace App\Http\Controllers;
 
-use App\Models\Pemesanan;
-use App\Models\Customer;
 use App\Models\Barang;
-use App\Http\Requests\PemesananStoreRequest;
-use App\Http\Requests\PemesananUpdateRequest;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Customer;
+use App\Models\Pemesanan;
 use Illuminate\View\View;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\PemesananStoreRequest;
+use App\Http\Requests\PemesananUpdateRequest;
 use Symfony\Component\HttpFoundation\Response;
 
 class PemesananController extends Controller
@@ -47,19 +48,6 @@ class PemesananController extends Controller
     }
 
     /**
-     * Show the form for creating a new order.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create(): View
-    {
-        $customers = Customer::all();
-        $barangs = Barang::all();
-
-        return view('pemesanan.create', compact('customers', 'barangs'));
-    }
-
-    /**
      * Store a newly created order in the database.
      *
      * @param  \App\Http\Requests\PemesananStoreRequest  $request
@@ -68,28 +56,12 @@ class PemesananController extends Controller
     public function store(PemesananStoreRequest $request): RedirectResponse
     {
         $validated = $request->validated();
-
-        // Calculate total price
+        $validated['tanggal_pesan'] = \Carbon\Carbon::createFromFormat('d-m-Y', $validated['tanggal_pesan'])->format('Y-m-d');
         $validated['total_harga'] = $validated['jumlah'] * $validated['harga_satuan'];
 
-        // Create order
         Pemesanan::create($validated);
 
-        return redirect()->route('pemesanans.index')->with('success', 'Order berhasil ditambahkan!');
-    }
-
-    /**
-     * Show the form for editing the specified order.
-     *
-     * @param  \App\Models\Pemesanan  $pemesanans
-     * @return \Illuminate\View\View
-     */
-    public function edit(Pemesanan $pemesanans): View
-    {
-        $customers = Customer::all();
-        $barangs = Barang::all();
-
-        return view('pemesanan.edit', compact('pemesanans', 'customers', 'barangs'));
+        return redirect()->route('pemesanans.index')->with('success', 'Pemesanan berhasil ditambahkan!');
     }
 
     /**
@@ -102,15 +74,21 @@ class PemesananController extends Controller
     public function update(PemesananUpdateRequest $request, Pemesanan $pemesanans): RedirectResponse
     {
         $validated = $request->validated();
-
-        // Calculate total price
         $validated['total_harga'] = $validated['jumlah'] * $validated['harga_satuan'];
 
-        $pemesanans->update($validated);
+        // Debugging
+        Log::debug('Updating Pemesanan with data: ', $validated);
 
-        return redirect()->route('pemesanans.index')->with('success', 'Order berhasil diperbarui!');
+        $updated = $pemesanans->update($validated);
+
+        if ($updated) {
+            Log::debug('Pemesanan updated successfully');
+        } else {
+            Log::error('Pemesanan update failed');
+        }
+
+        return redirect()->route('pemesanans.index')->with('success', 'Pemesanan berhasil diperbarui!');
     }
-
     /**
      * Remove the specified order from storage.
      *
@@ -121,7 +99,7 @@ class PemesananController extends Controller
     {
         $pemesanans->delete();
 
-        return redirect()->route('pemesanans.index')->with('success', 'Order berhasil dihapus!');
+        return redirect()->route('pemesanans.index')->with('success', 'Pemesanan berhasil dihapus!');
     }
 
     public function getHarga($id)

@@ -11,6 +11,7 @@ use App\Http\Controllers\API\v1\SupplierController as v1SupplierController;
 use App\Http\Controllers\API\v1\ProductController as v1ProductController;
 use App\Http\Controllers\API\v1\CustomerController as v1CustomerController;
 use App\Http\Controllers\API\v1\PemesananController as v1PemesananController;
+use App\Http\Controllers\API\v1\PenjualanController as v1PenjualanController;
 use App\Http\Controllers\API\v1\AdministratorController;
 
 Route::post('register', [AuthController::class, 'register']);
@@ -43,6 +44,9 @@ Route::name('api.')->prefix('v1')->group(function () {
 
     Route::get('/pemesanans/{id}', [v1PemesananController::class, 'show'])->name('pemesanans.show');
     Route::get('/pemesanans/{id}/edit', [v1PemesananController::class, 'edit'])->name('pemesanans.edit');
+
+    Route::get('/penjualans/{id}', [v1PenjualanController::class, 'show'])->name('penjualans.show');
+    Route::get('/penjualans/{id}/edit', [v1PenjualanController::class, 'edit'])->name('penjualans.edit');
 
     Route::get('/administrator/{id}', [AdministratorController::class, 'show'])->name('administrator.show');
     Route::get('/administrator/{id}/edit', [AdministratorController::class, 'edit'])->name('administrator.edit');

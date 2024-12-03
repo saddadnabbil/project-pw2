@@ -24,10 +24,10 @@ class PemesananUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'customer_id' => 'required|exists:customers,id', // Ensure customer exists
-            'barang_id' => 'required|exists:barangs,id', // Ensure barang exists
-            'jumlah' => 'required|integer|min:1', // Ensure jumlah is a positive integer
-            'harga_satuan' => 'required|numeric|min:0', // Ensure harga_satuan is a valid number
+            'customer_id' => 'required|exists:customers,id',
+            'barang_id' => 'required|exists:barangs,id',
+            'jumlah' => 'required|integer|min:1', 
+            'harga_satuan' => 'required|numeric|min:0', 
             'status' => 'required|in:pending,confirmed,shipped,delivered', // Ensure status is one of the allowed values
         ];
     }

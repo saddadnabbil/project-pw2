@@ -31,4 +31,14 @@ class Pemesanan extends Model
     {
         return $this->belongsTo(Barang::class, 'barang_id');
     }
+
+    public function getHargaSatuanAttribute($value)
+    {
+        return 'Rp ' . number_format($value, 0, ',', '.');
+    }
+
+    public function getTotalHargaAttribute($value)
+    {
+        return 'Rp ' . number_format($value, 0, ',', '.');
+    }
 }
