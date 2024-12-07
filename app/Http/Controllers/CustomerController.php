@@ -22,24 +22,18 @@ class CustomerController extends Controller
     public function index(): View|JsonResponse
     {
         // Ambil data customers beserta email user yang berelasi
-        $customers = Customer::with('user')->select(
+        $customers = Customer::select(
             'id',
             'nama',
             'email',
             'alamat',
             'telepon',
-            'user_id' // Menyertakan user_id agar bisa diakses
         )->get();
-
-        $users = User::whereNot('role', 'admin')->get();
 
         // Jika request ajax, kirim data dalam format JSON untuk DataTables
         if (request()->ajax()) {
             return datatables()->of($customers)
                 ->addIndexColumn()
-                ->addColumn('user_email', function ($customer) {
-                    return $customer->user->email;
-                })
                 ->addColumn('action', 'customer.datatable.action')
                 ->rawColumns(['action'])
                 ->toJson();
@@ -49,7 +43,7 @@ class CustomerController extends Controller
         $customerTrashedCount = Customer::onlyTrashed()->count();
 
         // Jika bukan request ajax, tampilkan view biasa
-        return view('customer.index', compact('customerTrashedCount', 'customers', 'users'));
+        return view('customer.index', compact('customerTrashedCount', 'customers'));
     }
 
     /**

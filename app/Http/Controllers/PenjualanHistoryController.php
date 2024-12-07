@@ -19,8 +19,10 @@ class PenjualanHistoryController extends Controller implements HistoryInterface
     {
         $penjualans = Penjualan::select(
             'id',
-            'pemesanan_id',
+            'barang_id',
             'customer_id',
+            'jumlah',
+            'harga_satuan',
             'total_harga',
             'tanggal_jual',
             'status_pembayaran'
@@ -32,8 +34,29 @@ class PenjualanHistoryController extends Controller implements HistoryInterface
                 ->addColumn('customer_name', function ($penjualans) {
                     return $penjualans->customer ? $penjualans->customer->nama : 'No customer';
                 })
+                ->addColumn('barang_name', function ($penjualans) {
+                    return $penjualans->barang ? $penjualans->barang->nama : 'No Pemesanan';
+                })
+                ->addColumn('status_pembayaran', function ($penjualans) {
+                    $status = $penjualans->status_pembayaran;
+
+                    if ($status == 'paid') {
+                        return '<span class="badge bg-success">Paid</span>';
+                    } else {
+                        return '<span class="badge bg-danger">Unpaid</span>';
+                    }
+                })
+                ->addColumn('harga_satuan', function ($penjualans) {
+                    return 'Rp ' . number_format($penjualans->harga_satuan, 0, ',', '.');
+                })
+                ->addColumn('total_harga', function ($penjualans) {
+                    return 'Rp ' . number_format($penjualans->total_harga, 0, ',', '.');
+                })
                 ->addColumn('action', 'penjualan.history.datatable.action')
-                ->rawColumns(['action'])
+                ->rawColumns([
+                    'action',
+                    'status_pembayaran',
+                ])
                 ->toJson();
         }
 

@@ -11,22 +11,14 @@ class Customer extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'user_id',
         'nama',
         'email',
         'alamat',
         'telepon',
     ];
 
-    // Relasi Customer ke User (One-to-One)
-    public function user()
+    public function penjualan()
     {
-        return $this->belongsTo(User::class);
-    }
-
-    // Relasi ke Pemesanan
-    public function pemesanans()
-    {
-        return $this->hasMany(Pemesanan::class);
+        return $this->hasMany(Penjualan::class);
     }
 }

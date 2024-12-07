@@ -2,6 +2,48 @@
     $(function() {
         let loadingAlert = $('.modal-body #loading-alert');
 
+        $('#addPenjualanModal #barang_id').on('change', function() {
+            let barangId = $(this).val();
+
+            if (barangId) {
+                $.ajax({
+                    url: '/barang/' + barangId + '/harga',
+                    type: 'GET',
+                    success: function(response) {
+                        let harga = parseFloat(response.harga.replace(/[^\d,-]+/g, "")
+                            .replace(/\./g, ""));
+
+                        $('#addPenjualanModal #harga_satuan').val(harga);
+                        calculateTotalHarga
+                            ('#addPenjualanModal');
+                    },
+                    error: function() {
+                        alert('Failed to fetch product price');
+                    }
+                });
+            } else {
+                $('#addPenjualanModal #harga_satuan').val('');
+            }
+        });
+
+        $('#addPenjualanModal #jumlah, #addPenjualanModal #harga_satuan').on('input', function() {
+            calculateTotalHarga('#addPenjualanModal');
+        });
+        $('#editPenjualanModal #jumlah, #editPenjualanModal #harga_satuan').on('input', function() {
+            calculateTotalHarga('#editPenjualanModal');
+        });
+
+        function calculateTotalHarga(modalId) {
+            let jumlah = parseInt($(modalId + ' #jumlah').val()) || 0;
+            let hargaSatuan = parseFloat($(modalId + ' #harga_satuan').val()) || 0;
+
+            console.log(modalId, jumlah, hargaSatuan);
+
+            let totalHarga = jumlah * hargaSatuan;
+            $(modalId + ' #total_harga').val(totalHarga.toFixed(
+                0));
+        }
+
         // Initialize DataTable
         $('#datatable').DataTable({
             processing: true,
@@ -12,12 +54,20 @@
                     name: 'DT_RowIndex'
                 },
                 {
-                    data: 'customer_name', // Display customer name
+                    data: 'customer_name',
                     name: 'customer_name'
                 },
                 {
-                    data: 'pemesanan_id', // Display Pemesanan ID
-                    name: 'pemesanan_id'
+                    data: 'barang_name',
+                    name: 'barang_name'
+                },
+                {
+                    data: 'jumlah',
+                    name: 'jumlah'
+                },
+                {
+                    data: 'harga_satuan',
+                    name: 'harga_satuan'
                 },
                 {
                     data: 'total_harga', // Display total harga
@@ -64,8 +114,14 @@
                     // Fill the modal with fetched data
                     $('#showPenjualanModal #customer_name').val(response.data
                         .customer_name);
-                    $('#showPenjualanModal #pemesanan_id').val(response.data.pemesanan_id);
-                    $('#showPenjualanModal #total_harga').val(response.data.total_harga);
+                    $('#showPenjualanModal #barang_name').val(response.data.barang_name);
+                    $('#showPenjualanModal #jumlah').val(response.data.jumlah);
+                    $('#showPenjualanModal #harga_satuan').val(parseInt(response
+                        .data
+                        .harga_satuan));
+                    $('#showPenjualanModal #total_harga').val(parseInt(response
+                        .data
+                        .total_harga));
                     $('#showPenjualanModal #tanggal_jual').val(response.data.tanggal_jual);
                     $('#showPenjualanModal #status_pembayaran').val(response.data
                         .status_pembayaran);
@@ -109,10 +165,16 @@
                         formActionURL);
 
                     // Fill the form with fetched data
-                    $('#editPenjualanModal #customer_name').val(response.data
-                        .customer_name);
-                    $('#editPenjualanModal #pemesanan_id').val(response.data.pemesanan_id);
-                    $('#editPenjualanModal #total_harga').val(response.data.total_harga);
+                    $('#editPenjualanModal #customer_id').val(response.data
+                        .customer_id);
+                    $('#editPenjualanModal #barang_id').val(response.data.barang_id);
+                    $('#editPenjualanModal #jumlah').val(response.data.jumlah);
+                    $('#editPenjualanModal #harga_satuan').val(parseInt(response
+                        .data
+                        .harga_satuan));
+                    $('#editPenjualanModal #total_harga').val(parseInt(response
+                        .data
+                        .total_harga));
                     $('#editPenjualanModal #tanggal_jual').val(response.data.tanggal_jual);
                     $('#editPenjualanModal #status_pembayaran').val(response.data
                         .status_pembayaran);

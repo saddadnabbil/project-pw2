@@ -79,4 +79,10 @@ class BarangController extends BaseController
         $barang->delete();
         return $this->sendResponse(null, 'Barang deleted successfully');
     }
+
+    public function getHarga($id)
+    {
+        $barang = Barang::findOrFail($id);
+        return response()->json(['harga' => $barang->harga]);
+    }
 }

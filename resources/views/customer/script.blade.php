@@ -15,10 +15,6 @@
                     name: 'nama'
                 },
                 {
-                    data: 'user_email',
-                    name: 'user_email'
-                },
-                {
                     data: 'alamat',
                     name: 'alamat'
                 },
@@ -54,7 +50,6 @@
                     $('#showCustomerModal #email').val(response.data.email);
                     $('#showCustomerModal #alamat').val(response.data.alamat);
                     $('#showCustomerModal #telepon').val(response.data.telepon);
-                    $('#showCustomerModal #user_email').val(response.data.user.email);
                 }
             });
         });
@@ -87,7 +82,6 @@
                     $('#editCustomerModal #email').val(response.data.email);
                     $('#editCustomerModal #alamat').val(response.data.alamat);
                     $('#editCustomerModal #telepon').val(response.data.telepon);
-                    $('#editCustomerModal #user_id').val(response.data.user_id);
                 }
             });
         });

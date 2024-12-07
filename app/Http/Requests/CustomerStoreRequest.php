@@ -24,7 +24,6 @@ class CustomerStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required',
             'nama' => 'required|min:3',
             'email' => 'required|email',
             'alamat' => 'required',
@@ -40,7 +39,6 @@ class CustomerStoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'user_id.required' => 'Kolom user wajib diisi!',
             'nama.required' => 'Kolom nama wajib diisi!',
             'nama.min' => 'Kolom nama minimal 3 karakter!',
             'email.required' => 'Kolom email wajib diisi!',

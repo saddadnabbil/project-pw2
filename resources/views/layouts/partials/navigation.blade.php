@@ -11,7 +11,6 @@
 </div>
 <div class="sidebar-menu">
     <ul class="menu">
-        <li class="sidebar-title">Menu</li>
         <li class="sidebar-item {{ request()->is('dashboard*') ? 'active' : '' }}">
             <a href="{{ route('dashboard') }}" class='sidebar-link'>
                 <i class="bi bi-house-door-fill"></i>
@@ -23,7 +22,7 @@
         <li class="sidebar-item {{ request()->is('suppliers*') ? 'active' : '' }}">
             <a href="{{ route('suppliers.index') }}" class='sidebar-link'>
                 <i class="bi bi-person-check-fill"></i>
-                <span>Suppliers</span>
+                <span>Suplier</span>
             </a>
         </li>
 
@@ -34,20 +33,7 @@
             </a>
         </li>
 
-        <li class="sidebar-item {{ request()->is('customers*') ? 'active' : '' }}">
-            <a href="{{ route('customers.index') }}" class='sidebar-link'>
-                <i class="bi bi-person-lines-fill"></i>
-                <span>Customer</span>
-            </a>
-        </li>
-
         <li class="sidebar-title mt-4">Transaksi</li>
-        <li class="sidebar-item {{ request()->is('pemesanans*') ? 'active' : '' }}">
-            <a href="{{ route('pemesanans.index') }}" class='sidebar-link'>
-                <i class="bi bi-cart-check-fill"></i>
-                <span>Pemesanan</span>
-            </a>
-        </li>
         <li class="sidebar-item {{ request()->is('penjualans*') ? 'active' : '' }}">
             <a href="{{ route('penjualans.index') }}" class='sidebar-link'>
                 <i class="bi bi-cash-stack"></i>
@@ -61,6 +47,13 @@
                 <a href="{{ route('administrators.index') }}" class='sidebar-link'>
                     <i class="bi bi-person-badge-fill"></i>
                     <span>Administrator</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item {{ request()->is('customers*') ? 'active' : '' }}">
+                <a href="{{ route('customers.index') }}" class='sidebar-link'>
+                    <i class="bi bi-person-lines-fill"></i>
+                    <span>Customer</span>
                 </a>
             </li>
 

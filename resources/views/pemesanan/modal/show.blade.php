@@ -11,47 +11,18 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="mb-3">
-                            <label for="nama" class="form-label">Nama Pemesanan</label>
-                            <input type="text" class="form-control" name="nama" id="nama"
-                                placeholder="Masukkan nama Pemesanan.." disabled>
+                            <label for="customer_name" class="form-label">Nama Pemesanan</label>
+                            <input type="text" class="form-control" name="customer_name" id="customer_name"
+                                placeholder="Masukkan customer_name Pemesanan.." disabled>
                         </div>
                     </div>
-
                     <div class="col-md-12">
                         <div class="mb-3">
-                            <label for="kode" class="form-label">Kode Pemesanan</label>
-                            <input type="text" class="form-control" name="kode" id="kode"
-                                placeholder="Masukkan kode Pemesanan.." disabled>
-                        </div>
-                    </div>
-
                     <div class="col-md-12">
                         <div class="mb-3">
-                            <label for="stok" class="form-label">Stok</label>
-                            <input type="number" class="form-control" name="stok" id="stok"
-                                placeholder="Masukkan stok Pemesanan.." disabled>
-                        </div>
-                    </div>
-
-                    <div class="col-md-12">
-                        <div class="mb-3">
-                            <label for="harga" class="form-label">Harga</label>
-                            <input type="number" class="form-control" name="harga" id="harga"
-                                placeholder="Masukkan harga Pemesanan.." disabled>
-                        </div>
-                    </div>
-
-                    <div class="col-md-12">
-                        <div class="mb-3">
-                            <label for="supplier_id" class="form-label">Supplier</label>
-                            <select class="form-control" name="supplier_id" id="supplier_id" disabled>
-                                <option value="">Pilih Supplier</option>
-                                @foreach ($pemesanans as $supplier)
-                                    <option value="{{ $supplier->id }}">
-                                        {{ $supplier->nama }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <label for="jumlah" class="form-label">Jumlah Barang</label>
+                            <input type="number" class="form-control" name="jumlah" id="jumlah" placeholder="Masukkan jumlah.."
+                                disabled>
                         </div>
                     </div>
                 </div>

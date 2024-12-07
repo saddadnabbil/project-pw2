@@ -27,15 +27,6 @@
                                 <label for="telepon" class="form-label">Telepon</label>
                                 <input type="text" class="form-control" id="telepon" name="telepon" required>
                             </div>
-
-                            <select class="form-select" id="user_id" name="user_id" required>
-                                <option value="" disabled>Pilih User</option>
-                                @foreach ($users as $user)
-                                    <option value="{{ $user->id }}">
-                                        {{ $user->name }} | {{ $user->email }}
-                                    </option>
-                                @endforeach
-                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">

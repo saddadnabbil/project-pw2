@@ -9,26 +9,24 @@
                 <form action="{{ route('penjualans.store') }}" method="POST">
                     @csrf
                     <div class="row">
-                        <!-- Pemesanan ID Field (Select Dropdown) -->
+                        <!-- Barang ID Field (Select Dropdown) -->
                         <div class="col-md-12">
                             <div class="mb-3">
-                                <label for="pemesanan_id" class="form-label">Pemesanan</label>
-                                <select class="form-control @error('pemesanan_id') is-invalid @enderror"
-                                    name="pemesanan_id" id="pemesanan_id" required>
-                                    <option value="">Pilih Pemesanan</option>
-                                    <!-- Loop through pemesanan and display options -->
-                                    @foreach ($pemesanans as $pemesanan)
-                                        <option value="{{ $pemesanan->id }}"
-                                            {{ old('pemesanan_id') == $pemesanan->id ? 'selected' : '' }}>
-                                            {{ $pemesanan->id }} - {{ $pemesanan->customer->nama }} -
-                                            {{ $pemesanan->barang->nama }} -
-                                            {{ $pemesanan->total_harga }}
+                                <label for="barang_id" class="form-label">Nama Barang</label>
+                                <select class="form-control @error('barang_id') is-invalid @enderror" name="barang_id"
+                                    id="barang_id" required>
+                                    <option value="">Pilih Barang</option>
+                                    @foreach ($barangs as $barang)
+                                        <option value="{{ $barang->id }}"
+                                            {{ old('barang_id') == $barang->id ? 'selected' : '' }}>
+                                            {{ $barang->nama }}
                                         </option>
                                     @endforeach
                                 </select>
-
-                                @error('pemesanan_id')
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @error('barang_id')
+                                    <div class="invalid-feedback d-block">
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
                         </div>
@@ -53,6 +51,30 @@
                                     <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="jumlah" class="form-label">Jumlah Barang</label>
+                            <input type="number" class="form-control @error('jumlah') is-invalid @enderror"
+                                name="jumlah" id="jumlah" value="{{ old('jumlah') }}"
+                                placeholder="Masukkan jumlah.." required>
+                            @error('jumlah')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="harga_satuan" class="form-label">Harga Satuan</label>
+                            <input type="number" class="form-control @error('harga_satuan') is-invalid @enderror"
+                                name="harga_satuan" id="harga_satuan" value="{{ old('harga_satuan') }}"
+                                placeholder="Masukkan harga satuan.." required readonly>
+                            @error('harga_satuan')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <!-- Total Harga Field -->

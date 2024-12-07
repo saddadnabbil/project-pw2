@@ -113,17 +113,18 @@
                 success: function(response) {
                     loadingAlert.slideUp();
 
+                    console.log(response);
                     $('#showPemesananModal #customer_name').val(response.data
                         .customer_name);
-                    $('#showPemesananModal #barang_name').val(response.data.barang_name);
+                    $('#showPemesananModal #barang_name').val(response.data
+                        .barang_name);
                     $('#showPemesananModal #jumlah').val(response.data.jumlah);
-
                     $('#showPemesananModal #harga_satuan').val(unformatCurrency(response
                         .data
                         .harga_satuan));
-                    $('#showPemesananModal #total_harga').val(unformatCurrency(response.data
+                    $('#showPemesananModal #total_harga').val(unformatCurrency(response
+                        .data
                         .total_harga));
-
                     $('#showPemesananModal #status').val(response.data.status);
                     $('#showPemesananModal #tanggal_pesan').val(response.data
                         .tanggal_pesan);

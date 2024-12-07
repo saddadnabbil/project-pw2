@@ -2,10 +2,10 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4>Kas Pemasukan Tahun Ini</h4>
+                <h4>Total Penjualan</h4>
             </div>
             <div class="card-body">
-                <div id="cash-transaction-chart-dashboard"></div>
+                <div id="penjualan-chart-dashboard"></div>
             </div>
         </div>
     </div>

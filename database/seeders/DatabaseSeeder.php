@@ -25,7 +25,6 @@ class DatabaseSeeder extends Seeder
             SupplierSeeder::class,
             BarangSeeder::class,
             CustomerSeeder::class,
-            PemesananSeeder::class,
             PenjualanSeeder::class,
         ]);
     }

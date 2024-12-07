@@ -42,7 +42,7 @@ class AdministratorController extends Controller
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
         ]);
 
         return redirect()->route('administrators.index')->with('success', 'Data berhasil ditambahkan!');

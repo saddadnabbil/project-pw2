@@ -67,7 +67,7 @@
             };
 
             var chart = new ApexCharts(
-                document.querySelector("#cash-transaction-chart-dashboard"),
+                document.querySelector("#penjualan-chart-dashboard"),
                 options
             );
 

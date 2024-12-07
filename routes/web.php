@@ -10,6 +10,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\AdministratorController;
+use App\Http\Controllers\API\BarangController;
 use App\Http\Controllers\ProductHistoryController;
 use App\Http\Controllers\CustomerHistoryController;
 use App\Http\Controllers\SupplierHistoryController;
@@ -26,11 +27,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('app/suppliers', SupplierController::class)->except('create', 'show', 'edit');
     Route::resource('app/products', ProductController::class)->except('create', 'show', 'edit');
     Route::resource('app/customers', CustomerController::class)->except('create', 'show', 'edit');
-    Route::resource('app/pemesanans', PemesananController::class)->except('create', 'show', 'edit');
     Route::resource('app/penjualans', PenjualanController::class)->except('create', 'show', 'edit');
 
 
-    Route::get('/barang/{id}/harga', [PemesananController::class, 'getHarga'])->name('barang.harga');
+    Route::get('/barang/{id}/harga', [BarangController::class, 'getHarga'])->name('barang.harga');
 
     Route::controller(SupplierHistoryController::class)->prefix('/app/suppliers/history')->name('suppliers.')->group(function () {
         Route::get('', 'index')->name('index.history');
@@ -43,12 +43,6 @@ Route::middleware('auth')->group(function () {
         Route::delete('{id}', 'destroy')->name('destroy.history');
     });
     Route::controller(CustomerHistoryController::class)->prefix('/app/customers/history')->name('customers.')->group(function () {
-        Route::get('', 'index')->name('index.history');
-        Route::post('{id}', 'restore')->name('restore.history');
-        Route::delete('{id}', 'destroy')->name('destroy.history');
-    });
-
-    Route::controller(PemesananHistoryController::class)->prefix('/app/pemesanans/history')->name('pemesanans.')->group(function () {
         Route::get('', 'index')->name('index.history');
         Route::post('{id}', 'restore')->name('restore.history');
         Route::delete('{id}', 'destroy')->name('destroy.history');

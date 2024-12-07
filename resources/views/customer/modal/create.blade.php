@@ -48,22 +48,6 @@
                                     </div>
                                 @enderror
                             </div>
-                            <!-- User Selection -->
-                            <div class="mb-3">
-                                <label for="user_id" class="form-label">Pilih User</label>
-                                <select class="form-select" id="user_id" name="user_id" required>
-                                    <option value="" disabled selected>Pilih User</option>
-                                    @foreach ($users as $user)
-                                        <option value="{{ $user->id }}">{{ $user->name }} | {{ $user->email }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('user_id')
-                                    <div class="invalid-feedback d-block">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">

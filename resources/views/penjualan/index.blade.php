@@ -22,7 +22,9 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Customer</th>
-                            <th scope="col">ID Pemesanan</th>
+                            <th scope="col">Barang</th>
+                            <th scope="col">Jumlah</th>
+                            <th scope="col">Harga Satuan</th>
                             <th scope="col">Total Harga</th>
                             <th scope="col">Tanggal Penjualan</th>
                             <th scope="col">Status Pembayaran</th>

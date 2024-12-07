@@ -9,14 +9,6 @@
             <div class="modal-body">
                 @include('utilities.loading-alert')
                 <div class="row">
-                    <!-- Pemesanan ID -->
-                    <div class="col-md-12">
-                        <div class="mb-3">
-                            <label for="pemesanan_id" class="form-label">Pemesanan</label>
-                            <input type="text" class="form-control" id="pemesanan_id" disabled>
-                        </div>
-                    </div>
-
                     <!-- Customer Name -->
                     <div class="col-md-12">
                         <div class="mb-3">
@@ -25,11 +17,32 @@
                         </div>
                     </div>
 
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label for="barang_name" class="form-label">Barang</label>
+                            <input type="text" class="form-control" id="barang_name" disabled>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label for="jumlah" class="form-label">Jumlah</label>
+                            <input type="number" class="form-control" id="jumlah" disabled>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label for="harga_satuan" class="form-label">Harga Satuan</label>
+                            <input type="number" class="form-control" id="harga_satuan" disabled>
+                        </div>
+                    </div>
+
                     <!-- Total Harga -->
                     <div class="col-md-12">
                         <div class="mb-3">
                             <label for="total_harga" class="form-label">Total Harga</label>
-                            <input type="text" class="form-control" id="total_harga" disabled>
+                            <input type="number" class="form-control" id="total_harga" disabled>
                         </div>
                     </div>
 

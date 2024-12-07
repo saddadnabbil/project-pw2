@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Barang;
+use App\Models\Customer;
 use App\Models\Pemesanan;
 use App\Models\Penjualan;
 use Illuminate\Support\Carbon;
@@ -15,14 +17,16 @@ class PenjualanSeeder extends Seeder
      */
     public function run(): void
     {
-        // Mendapatkan pemesanan yang sudah dikonfirmasi
-        $pemesanan = Pemesanan::where('status', 'confirmed')->first(); // Ambil pemesanan yang statusnya confirmed
+        $barang = Barang::first();
+        $customer = Customer::first();
 
         // Membuat penjualan berdasarkan pemesanan
         $penjualan = Penjualan::create([
-            'pemesanan_id' => $pemesanan->id,
-            'customer_id' => $pemesanan->customer->id,
-            'total_harga' => $pemesanan->total_harga,
+            'barang_id' => $barang->id,
+            'customer_id' => $customer->id,
+            'jumlah' => 3,
+            'harga_satuan' => $barang->harga,
+            'total_harga' => $barang->harga * 3,
             'tanggal_jual' => Carbon::now(),
             'status_pembayaran' => 'paid',
         ]);

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PenjualanStoreRequest;
+use App\Http\Requests\PenjualanUpdateRequest;
+use App\Models\Barang;
 use App\Models\Customer;
 use App\Models\Pemesanan;
 use App\Models\Penjualan;
@@ -20,9 +23,9 @@ class PenjualanController extends Controller
      */
     public function index(): View|JsonResponse
     {
-        $penjualans = Penjualan::select('id', 'pemesanan_id', 'customer_id', 'total_harga', 'tanggal_jual', 'status_pembayaran')->get();
+        $penjualans = Penjualan::select('id', 'barang_id', 'customer_id', 'jumlah', 'harga_satuan', 'total_harga', 'tanggal_jual', 'status_pembayaran')->get();
         $penjualanTrashedCount = Penjualan::onlyTrashed()->count();
-        $pemesanans = Pemesanan::all();
+        $barangs = Barang::all();
         $customers = Customer::all();
 
         if (request()->ajax()) {
@@ -31,8 +34,8 @@ class PenjualanController extends Controller
                 ->addColumn('customer_name', function ($penjualans) {
                     return $penjualans->customer ? $penjualans->customer->nama : 'No customer';
                 })
-                ->addColumn('pemesanan_id', function ($penjualans) {
-                    return $penjualans->pemesanan ? $penjualans->pemesanan->id : 'No Pemesanan';
+                ->addColumn('barang_name', function ($penjualans) {
+                    return $penjualans->barang ? $penjualans->barang->nama : 'No Pemesanan';
                 })
                 ->addColumn('status_pembayaran', function ($penjualans) {
                     $status = $penjualans->status_pembayaran;
@@ -43,12 +46,18 @@ class PenjualanController extends Controller
                         return '<span class="badge bg-danger">Unpaid</span>';
                     }
                 })
+                ->addColumn('harga_satuan', function ($penjualans) {
+                    return 'Rp ' . number_format($penjualans->harga_satuan, 0, ',', '.');
+                })
+                ->addColumn('total_harga', function ($penjualans) {
+                    return 'Rp ' . number_format($penjualans->total_harga, 0, ',', '.');
+                })
                 ->addColumn('action', 'penjualan.datatable.action')
                 ->rawColumns(['status_pembayaran', 'action'])
                 ->toJson();
         }
 
-        return view('penjualan.index', compact('penjualans', 'penjualanTrashedCount', 'pemesanans', 'customers'));
+        return view('penjualan.index', compact('penjualans', 'penjualanTrashedCount', 'barangs', 'customers'));
     }
 
     /**
@@ -57,20 +66,9 @@ class PenjualanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(PenjualanStoreRequest $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'pemesanan_id' => 'required|exists:pemesanans,id',
-            'customer_id' => 'required|exists:customers,id',
-            'total_harga' => 'required|numeric|min:0',
-            'status_pembayaran' => 'required|in:paid,unpaid',
-        ]);
-
-        Penjualan::create($validated);
-
-        $pemesanan = Pemesanan::findOrFail($validated['pemesanan_id']);
-        $pemesanan->status = 'sold';
-        $pemesanan->save();
+        Penjualan::create($request->validated());
 
         return redirect()->route('penjualans.index')->with('success', 'Penjualan berhasil ditambahkan!');
     }
@@ -82,16 +80,9 @@ class PenjualanController extends Controller
      * @param  \App\Models\Penjualan  $penjualan
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Penjualan $penjualan): RedirectResponse
+    public function update(PenjualanUpdateRequest $request, Penjualan $penjualan): RedirectResponse
     {
-        $validated = $request->validate([
-            'pemesanan_id' => 'required|exists:pemesanans,id',
-            'customer_id' => 'required|exists:customers,id',
-            'total_harga' => 'required|numeric|min:0',
-            'status_pembayaran' => 'required|in:paid,unpaid',
-        ]);
-
-        $penjualan->update($validated);
+        $penjualan->update($request->validated());
 
         return redirect()->route('penjualans.index')->with('success', 'Penjualan berhasil diperbarui!');
     }
@@ -104,10 +95,6 @@ class PenjualanController extends Controller
      */
     public function destroy(Penjualan $penjualan): RedirectResponse
     {
-        $pemesanan = $penjualan->pemesanan;
-        $pemesanan->status = 'confirmed';
-        $pemesanan->save();
-
         $penjualan->delete();
 
         return redirect()->route('penjualans.index')->with('success', 'Penjualan berhasil dihapus!');

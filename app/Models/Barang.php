@@ -18,18 +18,13 @@ class Barang extends Model
         'supplier_id',
     ];
 
-    public function pemesanans()
+    public function penjualan()
     {
-        return $this->hasMany(Pemesanan::class);
+        return $this->hasMany(Penjualan::class);
     }
 
     public function supplier()
     {
         return $this->belongsTo(Supplier::class);
-    }
-
-    public function getHargaAttribute($value)
-    {
-        return 'Rp ' . number_format($value, 0, ',', '.');
     }
 }

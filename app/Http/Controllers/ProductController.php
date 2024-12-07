@@ -37,6 +37,9 @@ class ProductController extends Controller
                 ->addColumn('supplier_name', function ($customer) {
                     return $customer->supplier->nama; // Mengambil email dari relasi User
                 })
+                ->addColumn('harga', function ($products) {
+                    return 'Rp ' . number_format($products->harga, 0, ',', '.');
+                })
                 ->addColumn('action', 'product.datatable.action')
                 ->rawColumns(['action'])
                 ->toJson();
@@ -82,7 +85,7 @@ class ProductController extends Controller
      */
     public function destroy(Barang $product): RedirectResponse
     {
-        if ($product->pemesanans()->exists()) {
+        if ($product->penjualan()->exists()) {
             return redirect()->route('products.index')->with('warning', 'Data yang memiliki relasi tidak dapat dihapus!');
         }
 

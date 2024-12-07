@@ -22,7 +22,6 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Nama</th>
-                            <th scope="col">Email User</th> <!-- Menambahkan kolom Email User -->
                             <th scope="col">Alamat</th>
                             <th scope="col">Telepon</th>
                             <th scope="col">Aksi</th>
