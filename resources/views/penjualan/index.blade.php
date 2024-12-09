@@ -1,4 +1,4 @@
-@extends('layouts.main', ['title' => 'Penjualan', 'page_heading' => 'Data Penjualan'])
+@extends('layouts.main', ['title' => 'Penjualan', 'page_heading' => 'Data Penjualan & Pemesanan'])
 
 @section('content')
     <section class="row">
