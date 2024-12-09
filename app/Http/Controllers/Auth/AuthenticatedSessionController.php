@@ -49,6 +49,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/dashboard');
+        return redirect('/')->with('success', 'Anda telah keluar!');
     }
 }
