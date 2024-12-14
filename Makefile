@@ -1,4 +1,4 @@
-optimize:
+cache:
 		php artisan optimize:clear
 
 test:

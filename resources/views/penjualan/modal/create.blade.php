@@ -111,11 +111,11 @@
                                 <select class="form-control @error('status_pembayaran') is-invalid @enderror"
                                     name="status_pembayaran" id="status_pembayaran" required>
                                     <option value="">Pilih Status Pembayaran</option>
-                                    <option value="Lunas" {{ old('status_pembayaran') == 'Lunas' ? 'selected' : '' }}>
-                                        Lunas</option>
-                                    <option value="Belum Lunas"
-                                        {{ old('status_pembayaran') == 'Belum Lunas' ? 'selected' : '' }}>Belum Lunas
-                                    </option>
+                                    <option value="paid" {{ old('status_pembayaran') == 'paid' ? 'selected' : '' }}>
+                                        Paid</option>
+                                    <option value="unpaid"
+                                        {{ old('status_pembayaran') == 'unpaid' ? 'selected' : '' }}>
+                                        unpaid</option>
                                 </select>
 
                                 @error('status_pembayaran')

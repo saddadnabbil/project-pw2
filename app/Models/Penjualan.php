@@ -33,4 +33,49 @@ class Penjualan extends Model
     {
         return $this->belongsTo(Customer::class, 'customer_id');
     }
+
+    // Event lifecycle untuk mengurangi stok
+    protected static function booted()
+    {
+        // Saat membuat penjualan
+        static::creating(function ($penjualan) {
+            $barang = Barang::find($penjualan->barang_id);
+
+            if ($barang && $barang->stok >= $penjualan->jumlah) {
+                $barang->stok -= $penjualan->jumlah;
+                $barang->save();
+            } else {
+                throw new \Exception('Stok barang tidak mencukupi.');
+            }
+        });
+
+        // Saat mengupdate penjualan
+        static::updating(function ($penjualan) {
+            $original = $penjualan->getOriginal();
+            $barang = Barang::find($penjualan->barang_id);
+
+            if ($barang) {
+                // Kembalikan stok barang sebelumnya
+                $barang->stok += $original['jumlah'];
+
+                // Kurangi stok barang dengan jumlah baru
+                if ($barang->stok >= $penjualan->jumlah) {
+                    $barang->stok -= $penjualan->jumlah;
+                    $barang->save();
+                } else {
+                    throw new \Exception('Stok barang tidak mencukupi.');
+                }
+            }
+        });
+
+        // Saat menghapus penjualan
+        static::deleting(function ($penjualan) {
+            $barang = Barang::find($penjualan->barang_id);
+
+            if ($barang) {
+                $barang->stok += $penjualan->jumlah;
+                $barang->save();
+            }
+        });
+    }
 }

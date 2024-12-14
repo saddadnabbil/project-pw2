@@ -93,4 +93,10 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')->with('success', 'Data berhasil dihapus!');
     }
+
+    public function getHarga($id)
+    {
+        $barang = Barang::findOrFail($id);
+        return response()->json(['harga' => $barang->harga]);
+    }
 }

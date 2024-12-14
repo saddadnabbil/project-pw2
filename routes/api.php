@@ -15,23 +15,6 @@ use App\Http\Controllers\API\v1\SupplierController as v1SupplierController;
 use App\Http\Controllers\API\v1\PemesananController as v1PemesananController;
 use App\Http\Controllers\API\v1\PenjualanController as v1PenjualanController;
 
-Route::post('register', [AuthController::class, 'register']);
-Route::post('login', [AuthController::class, 'login'])->name('login');
-
-Route::apiResource('barangs', BarangController::class);
-
-
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('logout', [AuthController::class, 'logout']);
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
-
-    Route::apiResource('barangs', BarangController::class);
-    Route::apiResource('customers', CustomerController::class);
-    Route::apiResource('pemesanans', PemesananController::class);
-    Route::apiResource('suppliers', SupplierController::class);
-});
 
 Route::name('api.')->prefix('v1')->group(function () {
     Route::get('/suppliers/{id}', [v1SupplierController::class, 'show'])->name('suppliers.show');

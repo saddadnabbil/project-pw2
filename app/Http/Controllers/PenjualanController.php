@@ -68,7 +68,11 @@ class PenjualanController extends Controller
      */
     public function store(PenjualanStoreRequest $request): RedirectResponse
     {
-        Penjualan::create($request->validated());
+        $validatedData = $request->validated();
+
+        $validatedData['tanggal_jual'] = \Carbon\Carbon::parse($validatedData['tanggal_jual'])->format('Y-m-d');
+
+        Penjualan::create($validatedData);
 
         return redirect()->route('penjualans.index')->with('success', 'Penjualan berhasil ditambahkan!');
     }

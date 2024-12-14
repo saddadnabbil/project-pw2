@@ -23,14 +23,16 @@ Route::redirect('/', '/app/dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/app/dashboard', DashboardController::class)->name('dashboard');
+    Route::get('/app/about', function () {
+        return view('about.index');
+    })->name('about');
     Route::resource('app/administrators', AdministratorController::class)->except('create', 'show', 'edit', 'destroy');
     Route::resource('app/suppliers', SupplierController::class)->except('create', 'show', 'edit');
     Route::resource('app/products', ProductController::class)->except('create', 'show', 'edit');
     Route::resource('app/customers', CustomerController::class)->except('create', 'show', 'edit');
     Route::resource('app/penjualans', PenjualanController::class)->except('create', 'show', 'edit');
 
-
-    Route::get('/barang/{id}/harga', [BarangController::class, 'getHarga'])->name('barang.harga');
+    Route::get('/barang/{id}/harga', [ProductController::class, 'getHarga'])->name('barang.harga');
 
     Route::controller(SupplierHistoryController::class)->prefix('/app/suppliers/history')->name('suppliers.')->group(function () {
         Route::get('', 'index')->name('index.history');

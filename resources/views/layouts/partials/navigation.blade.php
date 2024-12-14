@@ -18,6 +18,13 @@
             </a>
         </li>
 
+        <li class="sidebar-item {{ request()->is('about*') ? 'active' : '' }}">
+            <a href="{{ route('about') }}" class='sidebar-link'>
+                <i class="bi bi-info-circle"></i>
+                <span>About</span>
+            </a>
+        </li>
+
         <li class="sidebar-title mt-4">Master Data</li>
         <li class="sidebar-item {{ request()->is('suppliers*') ? 'active' : '' }}">
             <a href="{{ route('suppliers.index') }}" class='sidebar-link'>
