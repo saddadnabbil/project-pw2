@@ -19,14 +19,14 @@
 
                 <div class="form-group position-relative has-icon-left mb-4">
                     <input type="email" class="form-control form-control-xl @error('email') is-invalid @enderror"
-                        name="email" placeholder="Email" required>
+                        name="email" placeholder="Email" required value="{{ env('ADMIN_EMAIL') }}">
                     <div class="form-control-icon">
                         <i class="bi bi-person"></i>
                     </div>
                 </div>
                 <div class="form-group position-relative has-icon-left mb-4">
                     <input type="password" class="form-control form-control-xl @error('password') is-invalid @enderror"
-                        name="password" placeholder="Password" required>
+                        name="password" placeholder="Password" required value="{{ env('ADMIN_PASSWORD') }}">
                     <div class="form-control-icon">
                         <i class="bi bi-shield-lock"></i>
                     </div>
