@@ -96,8 +96,8 @@
             loadingAlert.show(); // Show loading alert
 
             let id = $(this).data('id');
-            let url = "{{ route('api.penjualans.show', 'id') }}";
-            url = url.replace('id', id); // Replace with actual penjualan ID
+            let url = "{{ route('api.penjualans.show', ':id') }}";
+            url = url.replace(':id', id); // Replace with actual penjualan ID
 
             // Set the input fields to loading text
             $('#showPenjualanModal :input').val("Sedang mengambil data..");
@@ -134,10 +134,10 @@
             loadingAlert.show(); // Show loading alert
 
             let id = $(this).data('id');
-            let url = "{{ route('api.penjualans.edit', 'id') }}";
-            url = url.replace('id', id); // Replace with actual penjualan ID
+            let url = "{{ route('api.penjualans.edit', ':id') }}";
+            url = url.replace(':id', id); // Replace with actual penjualan ID
 
-            let formActionURL = "{{ route('penjualans.update', 'id') }}";
+            let formActionURL = "{{ route('penjualans.update', ':id') }}";
             formActionURL = formActionURL.replace('id', id); // Form submission URL
 
             // Disable form fields while loading data

@@ -32,8 +32,9 @@
         // Menampilkan detail customer
         $('#datatable').on('click', '.customer-detail', function() {
             let id = $(this).data('id');
-            let url = "{{ route('api.customers.show', 'id') }}";
-            url = url.replace('id', id);
+            let url = "{{ route('api.customers.show', ':id') }}"; // Gunakan :id sebagai placeholder
+            console.log(url);
+            url = url.replace(':id', id); // Ganti :id dengan nilai id yang diambil
 
             console.log(url);
 
@@ -59,10 +60,10 @@
         // Menampilkan modal edit customer
         $('#datatable').on('click', '.customer-edit', function() {
             let id = $(this).data('id');
-            let url = "{{ route('api.customers.edit', 'id') }}";
-            url = url.replace('id', id);
+            let url = "{{ route('api.customers.edit', ':id') }}";
+            url = url.replace(':id', id);
 
-            let formActionURL = "{{ route('customers.update', 'id') }}";
+            let formActionURL = "{{ route('customers.update', ':id') }}";
             formActionURL = formActionURL.replace('id', id)
 
             let editCustomerModalEveryInput = $('#editCustomerModal :input').not(

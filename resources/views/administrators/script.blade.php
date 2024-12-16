@@ -57,10 +57,10 @@
             loadingAlert.show();
 
             let id = $(this).data('id');
-            let url = "{{ route('api.administrator.edit', 'id') }}";
-            url = url.replace('id', id);
+            let url = "{{ route('api.administrator.edit', ':id') }}";
+            url = url.replace(':id', id);
 
-            let formActionURL = "{{ route('administrators.update', 'id') }}";
+            let formActionURL = "{{ route('administrators.update', ':id') }}";
             formActionURL = formActionURL.replace('id', id);
 
             let editSupplierModalEveryInput = $('#editAdministratorModal :input').not(

@@ -41,8 +41,8 @@
             loadingAlert.show();
 
             let id = $(this).data('id');
-            let url = "{{ route('api.products.show', 'id') }}";
-            url = url.replace('id', id);
+            let url = "{{ route('api.products.show', ':id') }}";
+            url = url.replace(':id', id);
 
             $('#showProductModal :input').val("Sedang mengambil data..");
 
@@ -68,10 +68,10 @@
             loadingAlert.show();
 
             let id = $(this).data('id');
-            let url = "{{ route('api.products.edit', 'id') }}";
-            url = url.replace('id', id);
+            let url = "{{ route('api.products.edit', ':id') }}";
+            url = url.replace(':id', id);
 
-            let formActionURL = "{{ route('products.update', 'id') }}";
+            let formActionURL = "{{ route('products.update', ':id') }}";
             formActionURL = formActionURL.replace('id', id)
 
             let editProductModalEveryInput = $('#editProductModal :input').not(

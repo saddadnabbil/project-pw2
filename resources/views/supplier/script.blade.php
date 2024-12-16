@@ -33,8 +33,8 @@
             loadingAlert.show();
 
             let id = $(this).data('id');
-            let url = "{{ route('api.suppliers.show', 'id') }}";
-            url = url.replace('id', id);
+            let url = "{{ route('api.suppliers.show', ':id') }}";
+            url = url.replace(':id', id);
 
             $('#showSupplierModal :input').val("Sedang mengambil data..");
 
@@ -58,10 +58,10 @@
             loadingAlert.show();
 
             let id = $(this).data('id');
-            let url = "{{ route('api.suppliers.edit', 'id') }}";
-            url = url.replace('id', id);
+            let url = "{{ route('api.suppliers.edit', ':id') }}";
+            url = url.replace(':id', id);
 
-            let formActionURL = "{{ route('suppliers.update', 'id') }}";
+            let formActionURL = "{{ route('suppliers.update', ':id') }}";
             formActionURL = formActionURL.replace('id', id)
 
             let editSupplierModalEveryInput = $('#editSupplierModal :input').not(

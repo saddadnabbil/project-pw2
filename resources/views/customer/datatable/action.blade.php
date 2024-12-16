@@ -1,5 +1,6 @@
 <div class="btn-group" role="group">
-    <div class="mx-1">
+    <div class="mx-1 {{$model->id}}">
+        
         <button type="button" data-id="{{ $model->id }}" class="btn btn-primary btn-sm customer-detail"
             data-bs-toggle="modal" data-bs-target="#showCustomerModal">
             <i class="bi bi-search"></i>
