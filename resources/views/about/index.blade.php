@@ -13,7 +13,7 @@
                     <b>Frontend:</b> Farhan Kamil <code>(211011450125)</code>
                 </li>
                 <li>
-                    Amanda Julian <code>(211011450435)</code>, Mainaki Ataariq <code>(211011450407)</code>, Zuhal  <code>(211011450115)</code>, Roro Anindya Rahayulianti Sari <code>(201011401466)</code>
+                    Amanda Julian, Mainaki Ataariq, Zuhal, Roro Anindya Rahayulianti Sari
                 </li>
             </ol>
         </div>
