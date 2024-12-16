@@ -7,13 +7,13 @@
         <div class="card-body">
             <ol>
                 <li>
-                    Backend: Handiyana Nurul Hakim<code>(211011450426)</code>, Saddad Nabbil <code>(211011450546)</code>
+                    <b>Backend:</b> Handiyana Nurul Hakim<code>(211011450426)</code>, Saddad Nabbil <code>(211011450546)</code>
                 </li>
                 <li>
-                    Frontend: Farhan Kamil <code>(211011450125)</code>
+                    <b>Frontend:</b> Farhan Kamil <code>(211011450125)</code>
                 </li>
                 <li>
-                    Other: Amanda Julian <code>(211011450435)</code>, Mainaki Ataariq <code>(211011450407)</code>, Zuhal  <code>(211011450115)</code>,
+                    Amanda Julian <code>(211011450435)</code>, Mainaki Ataariq <code>(211011450407)</code>, Zuhal  <code>(211011450115)</code>, Roro Anindya Rahayulianti Sari <code>(201011401466)</code>
                 </li>
             </ol>
         </div>
