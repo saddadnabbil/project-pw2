@@ -138,7 +138,7 @@
             url = url.replace(':id', id); // Replace with actual penjualan ID
 
             let formActionURL = "{{ route('penjualans.update', ':id') }}";
-            formActionURL = formActionURL.replace('id', id); // Form submission URL
+            formActionURL = formActionURL.replace(':id', id); // Form submission URL
 
             // Disable form fields while loading data
             let editPenjualanModalEveryInput = $('#editPenjualanModal :input').not(

@@ -62,7 +62,7 @@
             url = url.replace(':id', id);
 
             let formActionURL = "{{ route('suppliers.update', ':id') }}";
-            formActionURL = formActionURL.replace('id', id)
+            formActionURL = formActionURL.replace(':id', id)
 
             let editSupplierModalEveryInput = $('#editSupplierModal :input').not(
                     'button[type=button], input[name=_token], input[name=_method]')

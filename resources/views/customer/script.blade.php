@@ -64,7 +64,7 @@
             url = url.replace(':id', id);
 
             let formActionURL = "{{ route('customers.update', ':id') }}";
-            formActionURL = formActionURL.replace('id', id)
+            formActionURL = formActionURL.replace(':id', id)
 
             let editCustomerModalEveryInput = $('#editCustomerModal :input').not(
                 'button[type=button], input[name=_token], input[name=_method]');
