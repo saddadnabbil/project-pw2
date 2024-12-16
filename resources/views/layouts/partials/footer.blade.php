@@ -4,7 +4,7 @@
             <p></p>
         </div>
         <div class="float-end">
-            &copy; {{ date('Y') }} Kelompok 3
+            &copy; {{ date('Y') }} Kelompok 1
         </div>
     </div>
 </footer>
