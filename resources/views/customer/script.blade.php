@@ -35,6 +35,8 @@
             let url = "{{ route('api.customers.show', 'id') }}";
             url = url.replace('id', id);
 
+            console.log(url);
+
             $('#showCustomerModal :input').val("Sedang mengambil data..");
 
             $.ajax({
